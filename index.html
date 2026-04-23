@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>皇室手册 · 数据宝典</title>
+    <title>皇室手册</title>
     <style>
         * {
             margin: 0;
@@ -51,6 +51,28 @@
             transition: all 0.2s ease;
             z-index: 2;
             border: 1px solid rgba(210, 180, 100, 0.3);
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: rgba(210, 180, 100, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(210, 180, 100, 0.5);
+            color: #f5d742;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        .lang-switch:hover {
+            background: rgba(210, 180, 100, 0.35);
+            border-color: #ffd966;
         }
 
         .hero {
@@ -94,7 +116,6 @@
             opacity: 0.9;
         }
 
-        /* 卡片网格 */
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -181,98 +202,185 @@
                 width: 64px;
                 height: 64px;
             }
+            .lang-switch {
+                top: 0.8rem;
+                right: 1rem;
+                padding: 0.2rem 0.7rem;
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- 语言切换按钮 -->
+    <button class="lang-switch" id="langToggle" onclick="toggleLanguage()">English</button>
+
     <div class="hero">
         <h1>皇室手册</h1>
-        <div class="sub">卡牌百科 · 深度数据 · 全面解析皇室战争核心机制</div>
+        <div class="sub" data-i18n="subtitle">卡牌百科 · 数据挖掘 · 机制解析</div>
     </div>
 
-    <!-- 卡片网格 -->
     <div class="links-grid">
         <!-- 卡牌使用率 -->
         <a href="https://usage.clashroyale.dpdns.org" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E📊%3C/text%3E%3C/svg%3E"
-                 alt="卡牌使用率">
-            <h3>卡牌使用率</h3>
-            <p>各赛季不同类型卡牌使用率详情</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E📊%3C/text%3E%3C/svg%3E" alt="卡牌使用率">
+            <h3 data-i18n="card1_title">卡牌使用率</h3>
+            <p data-i18n="card1_desc">各赛季不同类型卡牌使用率详情</p>
         </a>
         <!-- 卡牌隐藏数据 -->
         <a href="https://docs.qq.com/sheet/DQUlmVFpoY1JHVWty?tab=74nq8m" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🔍%3C/text%3E%3C/svg%3E"
-                 alt="卡牌隐藏数据">
-            <h3>卡牌隐藏数据</h3>
-            <p>视野范围、抬手延迟、碰撞质量等</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🔍%3C/text%3E%3C/svg%3E" alt="卡牌隐藏数据">
+            <h3 data-i18n="card2_title">卡牌隐藏数据</h3>
+            <p data-i18n="card2_desc">视野范围、抬手延迟、碰撞质量等</p>
         </a>
         <!-- 卡牌历史调整 -->
         <a href="#" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E📅%3C/text%3E%3C/svg%3E"
-                 alt="卡牌历史改动">
-            <h3>卡牌历史改动</h3>
-            <p>所有卡牌全部平衡性调整（即将上线）</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E📅%3C/text%3E%3C/svg%3E" alt="卡牌历史改动">
+            <h3 data-i18n="card3_title">卡牌历史改动</h3>
+            <p data-i18n="card3_desc">所有卡牌全部平衡性调整（即将上线）</p>
         </a>
         <!-- 天梯分数线 -->
         <a href="https://score.clashroyale.dpdns.org" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🏆%3C/text%3E%3C/svg%3E"
-                 alt="天梯分数线">
-            <h3>天梯分数线</h3>
-            <p>各赛季天梯分数线阈值</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🏆%3C/text%3E%3C/svg%3E" alt="天梯分数线">
+            <h3 data-i18n="card4_title">天梯分数线</h3>
+            <p data-i18n="card4_desc">各赛季天梯分数线阈值</p>
         </a>
         <!-- 伤害vs血量 -->
         <a href="https://dvh.clashroyale.dpdns.org" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E⚔️%3C/text%3E%3C/svg%3E"
-                 alt="伤害vs血量">
-            <h3>伤害vs血量</h3>
-            <p>卡牌斩杀线、交互分析</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E⚔️%3C/text%3E%3C/svg%3E" alt="伤害vs血量">
+            <h3 data-i18n="card5_title">伤害vs血量</h3>
+            <p data-i18n="card5_desc">卡牌斩杀线、交互分析</p>
         </a>
         <!-- 宝箱开箱概率 -->
         <a href="https://chest.clashroyale.dpdns.org" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🎁%3C/text%3E%3C/svg%3E"
-                 alt="宝箱开箱概率">
-            <h3>宝箱开箱概率</h3>
-            <p>幸运宝箱开箱概率及奖励数量</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🎁%3C/text%3E%3C/svg%3E" alt="宝箱开箱概率">
+            <h3 data-i18n="card6_title">宝箱开箱概率</h3>
+            <p data-i18n="card6_desc">幸运宝箱开箱概率及奖励数量</p>
         </a>
         <!-- 皇室BGM -->
         <a href="https://pan.baidu.com/s/1cFIZHjoy13HQ5t4jZmixzw?pwd=crsb" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🎵%3C/text%3E%3C/svg%3E"
-                 alt="皇室BGM">
-            <h3>皇室BGM</h3>
-            <p>原声音乐集下载</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🎵%3C/text%3E%3C/svg%3E" alt="皇室BGM">
+            <h3 data-i18n="card7_title">皇室BGM</h3>
+            <p data-i18n="card7_desc">原声音乐集下载</p>
         </a>
         <!-- 皇室表情 -->
         <a href="#" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E😀%3C/text%3E%3C/svg%3E"
-                 alt="皇室表情">
-            <h3>皇室表情</h3>
-            <p>全表情图鉴（即将上线）</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E😀%3C/text%3E%3C/svg%3E" alt="皇室表情">
+            <h3 data-i18n="card8_title">皇室表情</h3>
+            <p data-i18n="card8_desc">全表情图鉴（即将上线）</p>
         </a>
         <!-- 经验等级 -->
         <a href="https://exp.clashroyale.dpdns.org" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🧵%3C/text%3E%3C/svg%3E"
-                 alt="经验等级">
-            <h3>经验等级图</h3>
-            <p>各等级所需经验</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🧵%3C/text%3E%3C/svg%3E" alt="经验等级">
+            <h3 data-i18n="card9_title">经验等级图</h3>
+            <p data-i18n="card9_desc">各等级所需经验</p>
         </a>
         <!-- 免费奖励 -->
         <a href="https://reward.clashroyale.dpdns.org" class="card" target="_blank">
-            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🥇%3C/text%3E%3C/svg%3E"
-                 alt="免费奖励">
-            <h3>免费奖励</h3>
-            <p>领取免费奖励</p>
+            <img class="card-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232c3e4e'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='%23ffd966'%3E🥇%3C/text%3E%3C/svg%3E" alt="免费奖励">
+            <h3 data-i18n="card10_title">免费奖励</h3>
+            <p data-i18n="card10_desc">领取免费奖励</p>
         </a>
     </div>
 
     <div class="footer-note">
-        🎯 基于皇室战争客户端数据挖掘、API及社区研究 🎯
-    <br><br>
-        <a href="https://github.com/Darklighture" target="_blank" style="color: #ffd966; text-decoration: none; margin-right: 1rem;">🐙 GitHub</a>
+        <span data-i18n="footer_text">🎯 基于皇室战争客户端数据挖掘、API及社区研究 🎯</span>
+        <br><br>
+        <a href="https://www.youtube.com/channel/UC8PuQ5pbleMaLXMlcOk1Img" target="_blank" style="color: #ffd966; text-decoration: none; margin-right: 1rem;">🐙 YouTube</a>
         <a href="https://space.bilibili.com/107320245" target="_blank" style="color: #ffd966; text-decoration: none;">📺 Bilibili</a>
     </div>
 </div>
+
+<script>
+    // 翻译字典
+    const i18n = {
+        zh: {
+            subtitle: "卡牌百科 · 数据挖掘 · 机制解析",
+            card1_title: "卡牌使用率",
+            card1_desc: "各赛季不同类型卡牌使用率详情",
+            card2_title: "卡牌隐藏数据",
+            card2_desc: "视野范围、抬手延迟、碰撞质量等",
+            card3_title: "卡牌历史改动",
+            card3_desc: "所有卡牌全部平衡性调整（即将上线）",
+            card4_title: "天梯分数线",
+            card4_desc: "各赛季天梯分数线阈值",
+            card5_title: "伤害vs血量",
+            card5_desc: "卡牌斩杀线、交互分析",
+            card6_title: "宝箱开箱概率",
+            card6_desc: "幸运宝箱开箱概率及奖励数量",
+            card7_title: "皇室音乐",
+            card7_desc: "原声音乐、单位音效下载",
+            card8_title: "皇室表情",
+            card8_desc: "全表情图鉴（即将上线）",
+            card9_title: "经验等级图",
+            card9_desc: "各等级所需经验",
+            card10_title: "免费奖励",
+            card10_desc: "领取免费奖励",
+            footer_text: "🎯 基于皇室战争客户端数据挖掘、API及社区研究 🎯",
+            lang_btn: "English"
+        },
+        en: {
+            subtitle: "Card Encyclopedia · Data Mining · Mechanics Analysis",
+            card1_title: "Card Usage Rates",
+            card1_desc: "usage rates of different cards per season",
+            card2_title: "Hidden Card Data",
+            card2_desc: "sight range, hit speed, deploy delay, mass, etc.",
+            card3_title: "Card Balance History",
+            card3_desc: "all cards balance changes (coming soon)",
+            card4_title: "Ladder Score Thresholds",
+            card4_desc: "ladder score thresholds for each season",
+            card5_title: "Damage vs Hitpoints",
+            card5_desc: "breakpoints and interaction",
+            card6_title: "Lucky Chest Probability",
+            card6_desc: "check probabilities and rewards of lucky chests",
+            card7_title: "Clash Royale BGM",
+            card7_desc: "original soundtrack download",
+            card8_title: "Clash Royale Emotes",
+            card8_desc: "full emote gallery (coming soon)",
+            card9_title: "Experience Level Chart",
+            card9_desc: "experience required for each level",
+            card10_title: "Free Rewards",
+            card10_desc: "claim your free rewards",
+            footer_text: "🎯 Based on Clash Royale Client Data Mining, API & Community Research 🎯",
+            lang_btn: "中文"
+        }
+    };
+
+    let currentLang = localStorage.getItem('cr-lang') || 'zh';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('cr-lang', lang);
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.querySelector('title').textContent = lang === 'zh' ? '皇室手册' : 'Clash Royale Handbook · Data Treasury';
+        document.querySelector('h1').textContent = lang === 'zh' ? '皇室手册' : 'Clash Royale Handbook';
+
+        const dict = i18n[lang];
+        // 更新所有带 data-i18n 的元素
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key]) {
+                el.textContent = dict[key];
+            }
+        });
+
+        // 更新按钮文字
+        const btn = document.getElementById('langToggle');
+        if (btn) btn.textContent = dict.lang_btn;
+    }
+
+    function toggleLanguage() {
+        const newLang = currentLang === 'zh' ? 'en' : 'zh';
+        setLanguage(newLang);
+    }
+
+    // 初始应用语言
+    document.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+    });
+</script>
 
 </body>
 </html>
